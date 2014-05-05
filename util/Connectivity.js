@@ -2,7 +2,7 @@ jQuery.sap.declare("util.Connectivity");
  //Service Root URL
 //"http://sapes1.sapdevcenter.com:8080/sap/opu/odata/sap/ZGWSAMPLE_SRV/";
 //Extract the relative URL to use this application for deployment on any Web Server
-var serviceUrl = "/sap/opu/odata/sap/ZGWSAMPLE_SRV/";
+var serviceUrl = "http://sapes1.sapdevcenter.com:8080/sap/opu/odata/sap/ZGWSAMPLE_SRV/";
 
 function getServiceURL(){
 	//Get the service URL from the SAP NetWeaver Gateway Catalog service.
