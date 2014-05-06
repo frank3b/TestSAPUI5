@@ -3,10 +3,10 @@ sap.ui.localResources("util");
 jQuery.sap.require("util.Utility");
 
 function authenticate(){
-    	authenticateBasic();
+    	//authenticateBasic();
     	//authenticateSAML();
     	//authenticatePortalSSO();
-    	//authenticateForm();
+    	authenticateForm();
 }
 
 function authenticateBasic(){
@@ -52,7 +52,7 @@ function executeAjaxCall(type, url, data, oHeaders, successFunc, errorFunc){
 }
 
 function errorHandling(oData, textStatus, error){
-	
+	alert(oData.status + ' ' + error);
 	if(oData.status == '401'){
 		openLoginDialog();
 	} else {
