@@ -13,7 +13,7 @@ function getServiceURL(){
 function createModel(){  
 	var serviceUrl = getServiceURL();
 	alert(serviceUrl);
-	var oModel = new sap.ui.model.odata.ODataModel("http://localhost:8080/MyStarterSAPUI5/proxy/sap/opu/odata/sap/ZGWSAMPLE_SRV/", 
+	var oModel = new sap.ui.model.odata.ODataModel("http://sapes1.sapdevcenter.com:8080/sap/opu/odata/sap/ZGWSAMPLE_SRV", 
 			false, "P1940061036", "Tata2013", null,null, null, true);
 	
     oModel.setCountSupported(false);
