@@ -2,7 +2,7 @@ jQuery.sap.declare("util.Connectivity");
  //Service Root URL
 //"http://sapes1.sapdevcenter.com:8080/sap/opu/odata/sap/ZGWSAMPLE_SRV/";
 //Extract the relative URL to use this application for deployment on any Web Server
-var serviceUrl = "/sap/opu/odata/sap/ZGWSAMPLE_SRV/";
+var serviceUrl = "proxy/sap/opu/odata/sap/ZGWSAMPLE_SRV/";
 
 function getServiceURL(){
 	//Get the service URL from the SAP NetWeaver Gateway Catalog service.
@@ -13,6 +13,7 @@ function getServiceURL(){
 function createModel(){  
 	alert(serviceUrl);
 	var oModel = new sap.ui.model.odata.ODataModel("http://sapes1.sapdevcenter.com:8080/sap/opu/odata/sap/ZGWSAMPLE_SRV", 
+	//var oModel = new sap.ui.model.odata.ODataModel("http://localhost:8080/MyStarterSAPUI5/proxy/sap/opu/odata/sap/ZGWSAMPLE_SRV",
 			false, "P1940061036", "Tata2013", null, null, null, true);
 	
     oModel.setCountSupported(false);

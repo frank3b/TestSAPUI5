@@ -3,10 +3,10 @@ sap.ui.localResources("util");
 jQuery.sap.require("util.Utility");
 
 function authenticate(){
-    	authenticateBasic();
+    	//authenticateBasic();
     	//authenticateSAML();
     	//authenticatePortalSSO();
-    	//authenticateForm();
+    	authenticateForm();
 }
 
 function authenticateBasic(){

@@ -15,12 +15,13 @@ function executeFormAuthentication() {
 	var oHeaders = {};
 	oHeaders["Authorization"] = credentials;
 	
-	executeAjaxCall("GET", serviceUrl, null, oHeaders, fnSuccess);
+	//No esta controlando bien cuando hay un error http por ejemplo 401 no autorized, por esto veo mejor invocar siempre la ventana de autenticación.
+	//executeAjaxCall("GET", serviceUrl, null, oHeaders, fnSuccess);
+	openLoginDialog();
 }
 
 function fnSuccess(oData, statusText, responseXHR) {
 	var oFormData = getFormData(oData);
-
 	//if a server authentication Form returned,  then open a login dialog screen, otherwise continue to launch application  
 	if (oFormData) { 
 		openLoginDialog();
