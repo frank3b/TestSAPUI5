@@ -11,10 +11,9 @@ function getServiceURL(){
 }
 
 function createModel(){  
-	var serviceUrl = getServiceURL();
-	alert(serviceUrl);
+	//alert(serviceUrl);
 	var oModel = new sap.ui.model.odata.ODataModel("http://sapes1.sapdevcenter.com:8080/sap/opu/odata/sap/ZGWSAMPLE_SRV", 
-			false, "P1940061036", "Tata2013", null,null, null, true);
+			false, "P1940061036", "Tata2013", null, null, null, true);
 	
     oModel.setCountSupported(false);
 	// set global models
