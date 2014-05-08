@@ -50,7 +50,7 @@ sap.ui.controller("com.products.Product1", {
 		});
     },
     onLiveChange : function(oEvent) {
-		jQuery.sap.require("util.Utility");
+		//jQuery.sap.require("util.Utility");
 		search(this.getView(), oEvent.getParameters().newValue);
     },
     

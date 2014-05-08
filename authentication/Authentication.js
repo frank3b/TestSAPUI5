@@ -1,7 +1,7 @@
 jQuery.sap.declare("authentication.Authentication");
-sap.ui.localResources("util");
+//sap.ui.localResources("util");
+//jQuery.sap.require("util.Utility");
 sap.ui.localResources("model");
-jQuery.sap.require("util.Utility");
 jQuery.sap.require("model.model");
 
 function authenticate(){
