@@ -1,7 +1,7 @@
 sap.ui.jsview("com.products.Product2", {
 
     getControllerName : function() {
-		return "app.products.Product2";
+		return "com.products.Product2";
     },
 	/**
 	 * Handler to onBeforeShow event that fires by the NavContainer.<BR>

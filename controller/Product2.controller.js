@@ -9,10 +9,11 @@ sap.ui.controller("com.products.Product2", {
 	},
     
     onListItemTap : function(oEvent) {
-		var oBindingContext = oEvent.oSource.getBindingContext();
+		/*var oBindingContext = oEvent.oSource.getBindingContext();
 
 		sap.ui.getCore().getEventBus().publish("nav", "to", {
 	    	viewId : "app.details.BusinessPartner3",
 	    	data : { bindingContext : oBindingContext }
 		});
+		*/
    	},     });
