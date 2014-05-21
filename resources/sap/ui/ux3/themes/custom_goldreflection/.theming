@@ -1,0 +1,8 @@
+{
+	"sEntity": "Theme",
+	"sId": "custom_goldreflection",
+	"sLabel": "Custom Gold Reflection",
+	"sVendor": "cm",
+	"oExtends": "UI5.sap/uiext/inbox.sap_goldreflection",
+	"sTextDirections": "LTR"
+}
