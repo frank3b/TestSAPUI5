@@ -1,42 +1,22 @@
+sap.ui.jsview("sap.ui.demo.poa.view.App", {
 
-sap.ui.jsview("com.products.App", {
-	
-	getControllerName: function() {
-		return "com.products.App";
-	},
-
-	createContent : function(oController) {
-	
-		this.app = new sap.m.App("ProductsApp");
-		
-		var LoginPage = sap.ui.jsview("Login","com.products.Login");
-		LoginPage.app = this.app;
-		this.app.addPage(LoginPage);
-		
-		var ProductListPage = sap.ui.jsview("ProductList", "com.products.ProductList");
-		ProductListPage.app = this.app;
-		this.app.addPage(ProductListPage);
-		
-		var ProductDetailPage = sap.ui.jsview("ProductDetail", "com.products.ProductDetail");
-		ProductDetailPage.app = this.app;
-		this.app.addPage(ProductDetailPage);
-		
-		var SupplierDetailPage = sap.ui.jsview("SupplierDetail", "com.products.SupplierDetail");
-		SupplierDetailPage.app = this.app;
-		this.app.addPage(SupplierDetailPage);
-		
-		var settingsCategories = sap.ui.jsview("SettingsCategories", "com.products.SettingsCategories");
-		settingsCategories.app = this.app;
-		this.app.addPage(settingsCategories);
-		
-		var themeSetting = sap.ui.jsview("ThemeSetting", "com.products.ThemeSetting");
-		themeSetting.app = this.app;
-		this.app.addPage(themeSetting);
-		
-		var salesOrders = sap.ui.jsview("SalesOrders", "com.products.SalesOrders");
-		salesOrders.app = this.app;
-		this.app.addPage(salesOrders);
-		
+	createContent: function (oController) {
+		// to avoid scrollbars on desktop the root view must be set to block display
+		this.setDisplayBlock(true);
+		this.app = new sap.m.SplitApp("splitApp", {
+			//The master area needs to be closed when navigation in detail area is done.
+			afterDetailNavigate: function(){
+				this.hideMaster();
+			},
+			homeIcon : {
+				'phone' : 'img/57_iPhone_Desktop_Launch.png',
+				'phone@2' : 'img/114_iPhone-Retina_Web_Clip.png',
+				'tablet' : 'img/72_iPad_Desktop_Launch.png',
+				'tablet@2' : 'img/144_iPad_Retina_Web_Clip.png',
+				'favicon' : 'img/favicon.ico',
+				'precomposed': false
+			}
+		});
 		return this.app;
-	}	// end createContent
-});	
+	}
+});

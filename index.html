@@ -1,49 +1,39 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="UTF-8">
 
-<script id="sap-ui-bootstrap"
-		type="text/javascript"
-		src="resources/sap-ui-core.js"
-		data-sap-ui-theme="custom_goldreflection"
-		data-sap-ui-libs="sap.m">
-</script>
+	<title>Approve Purchase Orders</title>
 
-<script src="./view/SalesOrder4.view.js"></script>
-<script src="./controller/SalesOrder4.controller.js"></script>
-<script src="./view/ThemeSetting.view.js"></script>
-<script src="./controller/ThemeSetting.controller.js"></script>
-<script src="./view/SettingsCategories.view.js"></script>
-<script src="./controller/SettingsCategories.controller.js"></script>
-<script src="./view/BusinessPartner3.view.js"></script>
-<script src="./controller/BusinessPartner3.controller.js"></script>
-<script src="./view/Product1.view.js"></script>
-<script src="./controller/Product1.controller.js"></script>
-<script src="./view/Product2.view.js"></script>
-<script src="./controller/Product2.controller.js"></script>
-<script src="./util/datajs-1.1.1.js"></script>
-<script src="./view/Login.view.js"></script>
-<script src="./controller/Login.controller.js"></script>
-<script src="./view/App.view.js"></script>
-<script src="./controller/App.controller.js"></script>
-<script src="./model/model.js"></script>
-<script src="./util/Base64.js"></script>
-<script src="./util/BusyDialogHandler.js"></script>
-<script src="./util/Utility.js"></script>
-<script src="./util/Connectivity.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	<script id='sap-ui-bootstrap' type='text/javascript'
+		src='../../../../../resources/sap-ui-core.js'
+		data-sap-ui-theme='sap_bluecrystal'
+		data-sap-ui-libs='sap.m, sap.ui.layout'
+		data-sap-ui-xx-bindingSyntax="complex"
+		data-sap-ui-resourceroots='{ "sap.ui.demo.poa" : "./" }' >
+	</script>
 
-<script>
-		sap.ui.localResources("authentication");
-		jQuery.sap.require("authentication.Authentication"); 
-		$(document).ready(function(){
-			authenticate();
-		});
-</script>
+	<script>
+		new sap.m.Shell("Shell", {
+			showLogout : false,
+			app : new sap.ui.core.ComponentContainer({
+				name : 'sap.ui.demo.poa'
+			}),
+			homeIcon : {
+				'phone' : 'img/57_iPhone_Desktop_Launch.png',
+				'phone@2' : 'img/114_iPhone-Retina_Web_Clip.png',
+				'tablet' : 'img/72_iPad_Desktop_Launch.png',
+				'tablet@2' : 'img/144_iPad_Retina_Web_Clip.png',
+				'favicon' : 'img/favicon.ico',
+				'precomposed': false
+			}
+		}).placeAt('content');
+	</script>
 
 </head>
-<body class="sapUiBody" role="application">
-	<div id="content"></div>
+<body class="sapUiBody" id="content">
 </body>
 </html>
