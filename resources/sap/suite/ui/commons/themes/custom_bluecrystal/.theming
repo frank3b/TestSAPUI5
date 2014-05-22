@@ -1,7 +1,0 @@
-{
-	"sEntity": "Theme",
-	"sId": "custom_bluecrystal",
-	"sLabel": "Custom Blue Crystal",
-	"oExtends": "UI5.sap/suite/ui/commons.sap_bluecrystal",
-	"sTextDirections": "LTR"
-}
