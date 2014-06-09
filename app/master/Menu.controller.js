@@ -8,9 +8,15 @@ sap.ui.controller("app.master.Menu", {
 	 * 
 	 * @memberOf app.master.Menu
 	 */
-	// onInit: function() {
-	//
-	// },
+	 onInit: function() {
+			var oView = this.getView();
+			var oFilter = new sap.ui.model.Filter("Status", sap.ui.model.FilterOperator.Contains, "Inicial");
+			
+			// update list binding
+			var list = oView.oList;
+			var binding = list.getBinding("items");
+			binding.filter([oFilter]);
+	 },
 	/**
 	 * Similar to onAfterRendering, but this hook is invoked before the
 	 * controller's View is re-rendered (NOT before the first rendering!
@@ -18,9 +24,9 @@ sap.ui.controller("app.master.Menu", {
 	 * 
 	 * @memberOf app.master.Menu
 	 */
-	// onBeforeRendering: function() {
-	//
-	// },
+	 onBeforeShow: function(oEvent) {
+		 this.getView().oList.bindItems("/", this.getView().items);
+	 },
 	/**
 	 * Called when the View has been rendered (so its HTML is part of the
 	 * document). Post-rendering manipulations of the HTML could be done here.
@@ -40,35 +46,47 @@ sap.ui.controller("app.master.Menu", {
 	// onExit: function() {
 	//
 	// }
-	ordersTap : function() {
-		alert('ordersTap');
+	
+	//FIXME - update with the real status
+	handleTabSelect : function(oEvent) {
+		
+		var sKey = oEvent.getParameter("selectedKey");
+		var oFilter = null;
+		
+		if (sKey === "Status1") {
+			oFilter = new sap.ui.model.Filter("Status", sap.ui.model.FilterOperator.Contains, "Inicial");
+		} else if (sKey === "Status2") {
+			oFilter = new sap.ui.model.Filter("Status", sap.ui.model.FilterOperator.Contains, "Pendiente");
+		} else if (sKey === "Status3") {
+			oFilter = new sap.ui.model.Filter("Status", sap.ui.model.FilterOperator.Contains, "Terminado");
+		}
+		
+		if(oFilter){
+			// update list binding
+			var oView = this.getView();
+			var list = oView.oList;
+			var binding = list.getBinding("items");
+			binding.filter([oFilter]);
+		}
+		
+	},
+	//Open Menu
+	onMenuTap : function(oEvent) {
+		var oButton = oEvent.getSource();
+		var oView = this.getView();
+		oView._actionSheet.openBy(oButton);
+	},
+	
+	onListSelect : function(oEvent) {
+		alert('list select...');
 	},
 
-	salesNoteTap : function() {
-		
-		// Initialize a JSON Model
-		jQuery.sap.require("sap.ui.model.json.JSONModel");
-		var oModelS = new sap.ui.model.json.JSONModel();
-
-		// set employee mock model
-		aDataS = new sap.ui.model.json.JSONModel("model/mock.json");
-		oModelS.setData(aDataS);
-		
-		var oContext = new sap.ui.model.Context(oModelS, "/");
-
-		sap.ui.getCore().getEventBus().publish("nav", "to", {
-			viewId : "app.details.SaleNote",
-			data : {
-				bindingContext : oContext
-			}
-		});
-
-		// oBindingContext.saleNote.saleNote.item.amount = "";
-		// oBindingContext.saleNote.saleNote.item.code = "";
+	onBills : function(oEvent) {
+		alert('onBills...');
 	},
 
-	exitTap : function(evt) {
-		var oBindingContext = evt.oSource.getBindingContext();
+	onExit : function(oEvent) {
+		var oBindingContext = oEvent.oSource.getBindingContext();
 
 		sap.ui.getCore().getEventBus().publish("nav", "to", {
 			viewId : "app.master.Login",
@@ -76,6 +94,78 @@ sap.ui.controller("app.master.Menu", {
 				bindingContext : oBindingContext
 			}
 		});
-	}
+	},
+	
+	onNewSaleNote : function(oEvent) {
+		var oBindingContext = oEvent.oSource.getBindingContext();
 
+		sap.ui.getCore().getEventBus().publish("nav", "to", {
+			viewId : "app.master.NewSaleNote",
+			data : {
+				bindingContext : oBindingContext
+			}
+		});
+	},
+	
+	onNewSalesOrders : function(oEvent) {
+		alert('onNewSalesOrders');
+	},
+	
+	onConfig : function(oEvent) {
+		alert('onConfig');
+	},
+	
+	handleFilterChange : function(oEvent) {
+		var filters = [];
+		var oView = this.getView();
+		
+		// add filter for filter
+		var select = oView.filterSelect;
+		var key = select.getSelectedKey();
+		var filterMap = {
+			"5k" : new sap.ui.model.Filter("TotalValue", sap.ui.model.FilterOperator.GE, 100),
+			"10k" : new sap.ui.model.Filter("TotalValue", sap.ui.model.FilterOperator.GE, 1000)
+		};
+		if (filterMap[key]) {
+			filters.push(filterMap[key]);
+		}
+		
+		// update list binding
+		var list = oView.oList;
+		var binding = list.getBinding("items");
+		binding.filter(filters);	
+    },
+	
+	onLiveChange : function(oEvent) {
+		this._updateList();
+    },
+    
+    _updateList : function () {
+		
+		var filters = [];
+		var oView = this.getView();
+		
+		// add filter for search
+		var searchString = oView.searchField.getValue();
+		if (searchString && searchString.length > 0) {
+			var filter = new sap.ui.model.Filter("Code", sap.ui.model.FilterOperator.Contains, searchString);
+			filters.push(filter);
+		}		
+		
+		// update list binding
+		var list = oView.oList;
+		var binding = list.getBinding("items");
+		binding.filter(filters);		
+		
+	},
+	
+	loadContent: function(){
+    	var view = this.getView();
+    	view.oList.bindItems("/", view.items);
+	},
+	
+	onPull : function(oEvent, oController){
+		oController.loadContent(oController.oBindingContext);
+		this.hide();
+	}
 });

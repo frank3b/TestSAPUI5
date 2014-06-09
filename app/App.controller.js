@@ -4,6 +4,14 @@ sap.ui
 		"app.App",
 		{
 		    onInit : function() {
+		    	
+		    sap.ui.localResources("util");	
+		    jQuery.sap.require("util.Utility");	
+		    sap.ui.localResources("model");
+			jQuery.sap.require("model.model");
+			sap.ui.localResources("authentication");
+			jQuery.sap.require("authentication.Authentication");
+			jQuery.sap.require("util.BusyDialogHandler");
 			
 			// Initialize history management
 			var that = this;
@@ -29,7 +37,7 @@ sap.ui
 				    } ],
 				    defaultHandler : function(navType) {
 						that.oEventBus.publish("nav", "to", {
-					   		viewId : "app.master.Product1",
+					   		viewId : "app.master.Menu",
 					    	navType : navType
 						});
 				    }
@@ -76,7 +84,7 @@ sap.ui
 							.info(oBundle.getText("LOGGER_ERROR_LOADING_VIEW",[sViewId]));
 						oView = sap.ui.jsview(sViewId, sViewId);
 						(bMaster) ? splitApp.addMasterPage(oView) : splitApp.addDetailPage(oView);
-				    } else if (!bMaster) {
+				    } else if (sViewId == 'app.master.Menu') {
 						// in case the navigation is from list to
 						// details the details page is already loaded so
 						// the navigation will be failed. therefore we
@@ -96,5 +104,7 @@ sap.ui
 				}
 
 				// log
-				jQuery.sap.log.info(oBundle.getText("LOGGER_INFO_LOADING_VIEW",[sViewId,(!sNavType && bMaster),sNavType]));
-		    }		});
+				jQuery.sap.log.info(oBundle.getText("LOGGER_INFO_LOADING_VIEW",[sViewId,(!sNavType && bMaster), sNavType]));
+		    }
+		    
+});
